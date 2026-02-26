@@ -1,0 +1,227 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  --color-glass-dark: rgba(28, 28, 30, 0.7);
+  --color-glass-light: rgba(255, 255, 255, 0.7);
+  --color-border-dark: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(0, 0, 0, 0.05);
+  --color-bg-dark: #000000;
+  --color-bg-light: #F2F2F7;
+  --color-text-dark: #FFFFFF;
+  --color-text-light: #1C1C1E;
+  --color-text-secondary-dark: rgba(255, 255, 255, 0.6);
+  --color-text-secondary-light: rgba(0, 0, 0, 0.5);
+  --color-accent: #0A84FF;
+  --color-accent-hover: #409CFF;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Dark Mode (default) ──────────────────────────────────── */
+body {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.light {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+/* ─── Glassmorphic Panel ───────────────────────────────────── */
+.glass-panel {
+  background: var(--color-glass-dark);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 0.5px solid var(--color-border-dark);
+  border-radius: 20px;
+  transition: all 0.4s ease;
+}
+
+body.light .glass-panel {
+  background: var(--color-glass-light);
+  border-color: var(--color-border-light);
+}
+
+/* ─── iOS Opacity/Brightness Slider ────────────────────────── */
+.ios-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+body.light .ios-slider {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.ios-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border: none;
+}
+
+.ios-slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border: none;
+}
+
+.ios-slider::-webkit-slider-runnable-track {
+  height: 28px;
+  border-radius: 14px;
+}
+
+.ios-slider::-moz-range-track {
+  height: 28px;
+  border-radius: 14px;
+}
+
+/* ─── Segmented Control ────────────────────────────────────── */
+.segmented-control {
+  display: flex;
+  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+  border: 0.5px solid var(--color-border-dark);
+}
+
+body.light .segmented-control {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: var(--color-border-light);
+}
+
+.segmented-control button {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+
+body.light .segmented-control button {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.segmented-control button.active {
+  color: #fff;
+}
+
+body.light .segmented-control button.active {
+  color: #1C1C1E;
+}
+
+/* ─── Dropzone ─────────────────────────────────────────────── */
+.dropzone {
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+body.light .dropzone {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropzone:hover,
+.dropzone.drag-over {
+  border-color: var(--color-accent);
+  background: rgba(10, 132, 255, 0.05);
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+body.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* ─── Selection ────────────────────────────────────────────── */
+::selection {
+  background: rgba(10, 132, 255, 0.3);
+}
+
+/* ─── Overlay Animations ───────────────────────────────────── */
+@keyframes spin-record {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-spin-record {
+  animation: spin-record 4s linear infinite;
+}
+
+.animate-marquee {
+  animation: marquee 8s linear infinite;
+}
+
+/* ─── Mobile Layout: Upload first ──────────────────────────── */
+@media (max-width: 768px) {
+  .control-panel {
+    order: -1;
+  }
+}
